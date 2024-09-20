@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "pedalSHIELD_MEGA")(type "KiCad")(uri "${KIPRJMOD}/pedalSHIELD_MEGA.kicad_sym")(options "")(descr ""))
+)

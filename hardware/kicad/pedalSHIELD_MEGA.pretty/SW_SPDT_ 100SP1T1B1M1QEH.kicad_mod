@@ -1,0 +1,145 @@
+(footprint "SW_SPDT_ 100SP1T1B1M1QEH"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -8 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "eb182534-1ce7-475a-a10f-e02f423a5aa5")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "SW_SPDT_ 100SP1T1B1M1QEH"
+		(at 0 8 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "8a1265b1-def7-4c34-adbf-d874642d7829")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at -0.43 -10.85 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "4044e6f4-8b2c-491f-9165-bb79ce0e0673")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at -0.43 -10.85 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ae2d35bd-b322-451f-b3c9-1eed908651b6")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at -0.43 -10.85 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "5b51a68d-495f-4e4e-aa1c-b1d8533e2383")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_rect
+		(start -3.43 -6.35)
+		(end 3.43 6.35)
+		(stroke
+			(width 0.2)
+			(type default)
+		)
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "6536ac46-add1-4d9e-b9bb-20d0b7cbcf1a")
+	)
+	(fp_rect
+		(start -3.93 -6.85)
+		(end 3.93 6.85)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill none)
+		(layer "F.CrtYd")
+		(uuid "2447cd21-2b3f-4433-8d0e-061cede27fe1")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 10 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "9ab1fa0d-d4bf-42e2-ba1f-f9f37d9cf81f")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" thru_hole rect
+		(at 0 -4.7)
+		(size 3 2)
+		(drill oval 2.5 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(solder_mask_margin 0.1016)
+		(thermal_bridge_angle 0)
+		(uuid "9d304b46-fe89-4a22-a4a5-06ad85d1f17e")
+	)
+	(pad "2" thru_hole rect
+		(at 0 0)
+		(size 3 2)
+		(drill oval 2.5 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(solder_mask_margin 0.1016)
+		(thermal_bridge_angle 0)
+		(uuid "5b2214cf-fba3-48a2-bb83-e12dded846b6")
+	)
+	(pad "3" thru_hole rect
+		(at 0 4.7)
+		(size 3 2)
+		(drill oval 2.5 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(solder_mask_margin 0.1016)
+		(thermal_bridge_angle 0)
+		(uuid "69daaeb1-fe8b-4101-9538-76b23dab1568")
+	)
+	(model "/Users/hugo/Documents/KiCad/8.0/3dmodels/pedalSHIELD_MEGA/100SP1T1B1M1QEH.stp"
+		(offset
+			(xyz 0 0 8)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 -90)
+		)
+	)
+)

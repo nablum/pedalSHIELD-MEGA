@@ -1,0 +1,131 @@
+(footprint "SW_PUSH_104-0013-EVX"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -11.5 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "bfd2b089-75e6-4d7c-a722-bbdc0b52ddb3")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "SW_PUSH_104-0013-EVX"
+		(at 0 -10 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "0ef4de3e-eb49-4a29-8065-02271d1054a9")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 -11 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "5b1dbf63-c4f0-4b4d-b2dd-9c880449cb95")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" "https://www.mouser.fr/datasheet/2/253/MS-100574-1177598.pdf"
+		(at 0 -11 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "48b3608b-bad6-4bc2-8b61-53b77f9f4c93")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "https://www.mouser.fr/datasheet/2/253/MS-100574-1177598.pdf"
+		(at 0 -11 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "7c69f15f-2367-4823-9df0-bd41513c5230")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_circle
+		(center 0 0)
+		(end 4.5 0)
+		(stroke
+			(width 0.2)
+			(type default)
+		)
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "1131287a-7cd8-483c-ace2-02c7a6cdc020")
+	)
+	(fp_circle
+		(center 0 0)
+		(end 4.75 0)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill none)
+		(layer "F.CrtYd")
+		(uuid "50bbc3f4-ae78-4656-97c1-98cbec415e2f")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 -8.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "bd5a3599-266f-4f8d-8951-5ada19d76c07")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" thru_hole rect
+		(at -2.7 0)
+		(size 2 4)
+		(drill oval 0.8 2.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "f60fbd82-df5f-420e-b774-0db1d2e1b54a")
+	)
+	(pad "2" thru_hole rect
+		(at 2.7 0)
+		(size 2 4)
+		(drill oval 0.8 2.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "209b2853-89c1-4c8b-a628-285197bd3cfa")
+	)
+	(model "/Users/hugo/Documents/KiCad/8.0/3dmodels/pedalSHIELD_MEGA/103-1013-EVX.stp"
+		(offset
+			(xyz 0 0 1.5)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 0 0)
+		)
+	)
+)

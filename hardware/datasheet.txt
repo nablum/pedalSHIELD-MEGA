@@ -1,0 +1,37 @@
+# Data sheet references
+
+# Arduino Mega
+https://docs.arduino.cc/hardware/mega-2560
+
+# Unpolarised capacitor
+https://www.mouser.fr/datasheet/2/40/SR_Series-3165337.pdf
+
+# Polarised capacitor
+https://www.mouser.fr/datasheet/2/315/ABA0000C1050-947578.pdf
+
+# LED
+https://www.mouser.fr/datasheet/2/244/LUMXS09293_1-2551452.pdf
+
+# Jack connector
+https://www.mouser.fr/datasheet/2/289/nmj6hcd2-1853235.pdf
+
+# I2C OLED LCD
+https://robu.in/wp-content/uploads/2019/12/1.3-Inch-I2C-IIC-OLED-LCD-Module-4pin-with-VCC-GND-Blue-1.pdf
+
+# Resistor
+https://www.mouser.fr/datasheet/2/447/YAGEO_MFR_datasheet_2023v3-3324391.pdf
+
+# Potentiometer
+https://www.mouser.fr/datasheet/2/18/1/PIHER_PT_10_PTC_10-3105231.pdf
+
+# Foot switch
+https://componentsearchengine.com/Datasheets/1/SF17020F-0302-21R-L-015.pdf
+
+# Switch
+https://www.mouser.fr/datasheet/2/140/100SP1T1B1M1QEH-3447748.pdf
+
+# Button
+https://www.mouser.fr/datasheet/2/253/MS-100574-1177598.pdf
+
+# Op-Amp
+https://www.ti.com/lit/ds/symlink/tl972.pdf?ts=1726816864005&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FTL972

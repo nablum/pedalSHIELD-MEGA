@@ -1,0 +1,214 @@
+(footprint "LCD_OLED_SH1106"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -12.5 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "4d2180f4-981f-4eea-95f8-e03e235ad7c2")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "LCD_OLED_SH1106"
+		(at 0 -11 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "b9fa1d06-2edf-4ba2-90f2-09a77e6e4729")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 -12.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "f8d4becc-d76c-40e4-bc23-f95176cc65a4")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 -12.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "661804fd-f5d6-485b-9bc1-e76ea75083d1")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 -12.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "aca80c51-1a9b-4f85-9883-390af0f77f3d")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_rect
+		(start -5 -17)
+		(end 5 -14)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "b17ec93b-d73e-46d5-867b-218045cd5cb7")
+	)
+	(fp_rect
+		(start -17.75 -16.85)
+		(end 17.75 16.85)
+		(stroke
+			(width 0.2)
+			(type default)
+		)
+		(fill none)
+		(layer "Cmts.User")
+		(uuid "d773fc54-dfcd-4bd5-98fd-649e887f2871")
+	)
+	(fp_rect
+		(start -16.5 -10.5)
+		(end 16.5 9.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill none)
+		(layer "Cmts.User")
+		(uuid "a4807a26-4c66-41e4-9f2c-47f427ded675")
+	)
+	(fp_rect
+		(start -15 -8)
+		(end 15 6)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill none)
+		(layer "Cmts.User")
+		(uuid "8f1d1683-c2fc-408e-a595-14313d2d6483")
+	)
+	(fp_rect
+		(start -5.25 -17.25)
+		(end 5.25 -13.75)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill none)
+		(layer "F.CrtYd")
+		(uuid "91883669-0cef-48db-961e-0151772c2dfa")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 -9.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "c5bbf4c4-3256-43e8-ac70-bc48788c3dd6")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "" np_thru_hole circle
+		(at -16.25 -14.85)
+		(size 3 3)
+		(drill 3)
+		(layers "F&B.Cu" "*.Mask")
+		(uuid "6669b897-d352-46c0-af76-e69d39664126")
+	)
+	(pad "" np_thru_hole circle
+		(at -16.25 15.35)
+		(size 3 3)
+		(drill 3)
+		(layers "F&B.Cu" "*.Mask")
+		(uuid "fd430c68-f5c4-433d-a62e-1f5bd7732b67")
+	)
+	(pad "" np_thru_hole circle
+		(at 16.25 -14.85)
+		(size 3 3)
+		(drill 3)
+		(layers "F&B.Cu" "*.Mask")
+		(uuid "41694acc-9fc2-42cc-8fea-797ce0d52e2c")
+	)
+	(pad "" np_thru_hole circle
+		(at 16.25 15.35)
+		(size 3 3)
+		(drill 3)
+		(layers "F&B.Cu" "*.Mask")
+		(uuid "31009396-c85e-4c7d-8192-47e3f08239fd")
+	)
+	(pad "1" thru_hole rect
+		(at -3.81 -15.55 90)
+		(size 2.03 1.73)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "a99c0a64-7c0f-48a1-8cfd-42b2f74a0fe0")
+	)
+	(pad "2" thru_hole oval
+		(at -1.27 -15.55 90)
+		(size 2.03 1.73)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "c40f3bc9-0f5a-4940-9356-81e5ef6addd4")
+	)
+	(pad "3" thru_hole oval
+		(at 1.27 -15.55 90)
+		(size 2.03 1.73)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "7b4733f5-4383-4187-ac08-3d280fb40d97")
+	)
+	(pad "4" thru_hole oval
+		(at 3.81 -15.55 90)
+		(size 2.03 1.73)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "79f51d55-c313-4862-90ff-7c0d575c7fb9")
+	)
+	(group ""
+		(uuid "d864552c-79e3-4076-8cf9-19e45afd516f")
+		(members "79f51d55-c313-4862-90ff-7c0d575c7fb9" "7b4733f5-4383-4187-ac08-3d280fb40d97"
+			"a99c0a64-7c0f-48a1-8cfd-42b2f74a0fe0" "c40f3bc9-0f5a-4940-9356-81e5ef6addd4"
+		)
+	)
+	(model "/Users/hugo/Documents/KiCad/8.0/3dmodels/pedalSHIELD_MEGA/M20-7820446.stp"
+		(offset
+			(xyz -3.8 15.5 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)
