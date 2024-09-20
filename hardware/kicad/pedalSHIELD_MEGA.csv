@@ -1,0 +1,21 @@
+Reference,Description,Mouser,Qty
+A1,Shield for Arduino Mega 2560 R3,782-A000067,1
+"C1,C11",Unpolarized capacitor,SR211C104KARTR1,2
+"C2,C5,C7,C8,C9",Unpolarized capacitor,SR211C682MARTR1,5
+"C3,C6,C10",Polarized capacitor,ECE-A1EKA4R7,3
+C4,Unpolarized capacitor,D271K20Y5PH63L6R,1
+D1,"LED, 5mm",696-SSL-LX3044USBC,1
+"J1,J2","M Series, 6.35mm (1/4in) stereo jack",NMJ6HCD2,2
+"J3,J4,J5,J6,J7","Generic connector, single row, 01x08",M20-7820842,5
+J8,"Generic connector, single row, 01x10",M20-7821046,1
+LCD1,I2C connector for LCD display,855-M20-7820446,1
+"R1,R2",Resistor,MFR-25FRF52-1M,2
+"R3,R4,R6,R9,R10,R12,R13,R14,R15",Resistor,MFR-25FRF52-4K7,9
+"R5,R7,R8",Resistor,MFR-25FRF52-100K,3
+R11,Resistor,MFR-25FRF52-1M2,1
+RV1,Trim-potentiometer,PT10LH01-504A2020,1
+SW1,Switches 3PDT LATCHING 1A9VDC 9PIN,SF17020F-0302-21R-L-015,1
+SW2,"Switch, single pole double throw",100SP1T1B1M1QEH,1
+"SW3,SW4","Push button switch, generic, two pins",103-1013-EVX,2
+U1,"1MHz, Low-Power Op Amp, DIP-8",595-TL972IP,1
+US1,Supports CI 02x04,575-1104730841001000,1
