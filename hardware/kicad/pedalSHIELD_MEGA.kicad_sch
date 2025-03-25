@@ -5,9 +5,9 @@
 	(uuid "fd8c69bc-f8a9-4563-ad84-9dce491418f4")
 	(paper "A3")
 	(title_block
-		(title "pedalSHIELD_MEGA")
-		(date "2024-09-11")
-		(rev "1")
+		(title "pedalSHIELD_MEGA Schematic")
+		(date "2025-03-25")
+		(rev "2.1")
 	)
 	(lib_symbols
 		(symbol "LT972_1"
@@ -7310,7 +7310,7 @@
 				)
 			)
 		)
-		(property "Value" "SW_Push"
+		(property "Value" "~"
 			(at 82.55 90.424 0)
 			(effects
 				(font
@@ -7347,6 +7347,15 @@
 			)
 		)
 		(property "Mouser" "104-0013-EVX"
+			(at 82.55 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
 			(at 82.55 88.9 0)
 			(effects
 				(font
@@ -7564,6 +7573,15 @@
 				(hide yes)
 			)
 		)
+		(property "Mouser Part Number" ""
+			(at 185.42 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "00bc14c8-3b01-414b-bfb2-3dba2bd2ec73")
 		)
@@ -7705,6 +7723,15 @@
 				(hide yes)
 			)
 		)
+		(property "Mouser Part Number" ""
+			(at 172.72 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "ce0ea086-bb2f-4ae3-8474-24e1862b2b7d")
 		)
@@ -7797,14 +7824,14 @@
 		(dnp no)
 		(uuid "34076a02-4116-4f22-8b58-562d91871201")
 		(property "Reference" "D1"
-			(at 57.023 93.98 0)
+			(at 56.896 96.266 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "LED"
+		(property "Value" "~"
 			(at 57.023 96.52 0)
 			(effects
 				(font
@@ -7840,6 +7867,15 @@
 			)
 		)
 		(property "Mouser" "696-SSL-LX3044USBC "
+			(at 55.88 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
 			(at 55.88 101.6 0)
 			(effects
 				(font
@@ -7924,6 +7960,15 @@
 				(hide yes)
 			)
 		)
+		(property "Mouser Part Number" ""
+			(at 256.54 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "5f1e8095-0118-4c23-b7ec-449437bc7bc1")
 		)
@@ -7957,7 +8002,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "LCD"
+		(property "Value" "~"
 			(at 82.55 133.35 0)
 			(effects
 				(font
@@ -7985,6 +8030,15 @@
 			)
 		)
 		(property "Description" "I2C connector for LCD display"
+			(at 82.55 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
 			(at 82.55 125.73 0)
 			(effects
 				(font
@@ -8067,6 +8121,15 @@
 			)
 		)
 		(property "Mouser" "SR211C"
+			(at 234.95 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
 			(at 234.95 88.9 0)
 			(effects
 				(font
@@ -8219,6 +8282,15 @@
 				(hide yes)
 			)
 		)
+		(property "Mouser Part Number" ""
+			(at 25.4 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "576e7b4e-3291-4156-8d99-55b59ffabcee")
 		)
@@ -8357,6 +8429,15 @@
 			)
 		)
 		(property "Mouser" "ECE-A1EKA4R7"
+			(at 184.15 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
 			(at 184.15 95.25 0)
 			(effects
 				(font
@@ -8531,7 +8612,7 @@
 				)
 			)
 		)
-		(property "Value" "SW_Push"
+		(property "Value" "~"
 			(at 82.55 109.474 0)
 			(effects
 				(font
@@ -8576,6 +8657,15 @@
 				(hide yes)
 			)
 		)
+		(property "Mouser Part Number" ""
+			(at 82.55 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "7d24b338-992f-489e-87a2-a8bb36f4d9fe")
 		)
@@ -8603,14 +8693,14 @@
 		(dnp no)
 		(uuid "66bf9d7c-c2a9-4079-a0c0-df75cc106c4d")
 		(property "Reference" "U1"
-			(at 243.84 118.0786 0)
+			(at 237.236 107.696 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "LT972"
+		(property "Value" "~"
 			(at 243.84 115.5386 0)
 			(effects
 				(font
@@ -8646,6 +8736,15 @@
 			)
 		)
 		(property "Mouser" "595-TL972IP"
+			(at 234.95 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
 			(at 234.95 111.76 0)
 			(effects
 				(font
@@ -8838,7 +8937,7 @@
 				)
 			)
 		)
-		(property "Value" "SW_3PDT"
+		(property "Value" "~"
 			(at 74.168 63.754 0)
 			(effects
 				(font
@@ -8927,6 +9026,15 @@
 				(hide yes)
 			)
 		)
+		(property "Mouser Part Number" ""
+			(at 74.93 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "3"
 			(uuid "a8945032-4eea-4d9d-8fd7-8d1cc7370c81")
 		)
@@ -8974,14 +9082,14 @@
 		(dnp no)
 		(uuid "7ae94513-16c4-4f4a-8dfe-b2acf86847f6")
 		(property "Reference" "J2"
-			(at 142.875 130.81 0)
+			(at 143.256 127.762 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "AudioJack"
+		(property "Value" "~"
 			(at 142.875 128.27 0)
 			(effects
 				(font
@@ -9017,6 +9125,15 @@
 			)
 		)
 		(property "Mouser" "NMJ6HCD2"
+			(at 144.78 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
 			(at 144.78 119.38 0)
 			(effects
 				(font
@@ -9070,7 +9187,7 @@
 				)
 			)
 		)
-		(property "Value" "SW_3PDT"
+		(property "Value" "~"
 			(at 74.168 38.354 0)
 			(effects
 				(font
@@ -9156,6 +9273,15 @@
 					(size 1.27 1.27)
 				)
 				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
+			(at 74.93 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 				(hide yes)
 			)
 		)
@@ -9256,6 +9382,15 @@
 				(hide yes)
 			)
 		)
+		(property "Mouser Part Number" ""
+			(at 147.32 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "84065fbc-75d1-48ae-b5fe-7e4b4136d430")
 		)
@@ -9279,17 +9414,16 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "808ec5d7-1549-40a9-8831-07083256127a")
 		(property "Reference" "A1"
-			(at 349.25 20.32 0)
+			(at 349.25 23.368 0)
 			(effects
 				(font
 					(size 1.524 1.524)
 				)
 			)
 		)
-		(property "Value" "Arduino_Mega_Shield"
+		(property "Value" "~"
 			(at 349.25 22.86 0)
 			(effects
 				(font
@@ -9325,6 +9459,15 @@
 			)
 		)
 		(property "Mouser" "782-A000067 "
+			(at 349.25 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
 			(at 349.25 83.82 0)
 			(effects
 				(font
@@ -9550,6 +9693,15 @@
 				(hide yes)
 			)
 		)
+		(property "Mouser Part Number" ""
+			(at 147.32 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "b7ba16df-283d-48b8-ac62-ad7adfdd38c0")
 		)
@@ -9618,6 +9770,15 @@
 			)
 		)
 		(property "Mouser" "SR211C"
+			(at 219.71 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
 			(at 219.71 25.4 0)
 			(effects
 				(font
@@ -9702,6 +9863,15 @@
 				(hide yes)
 			)
 		)
+		(property "Mouser Part Number" ""
+			(at 171.45 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "3fa485b4-8cb9-48bc-8f41-7776f845926a")
 		)
@@ -9771,6 +9941,15 @@
 		)
 		(property "Mouser" "MFR-25FRF52"
 			(at 209.55 110.49 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
+			(at 209.55 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9877,7 +10056,7 @@
 				)
 			)
 		)
-		(property "Value" "SW_3PDT"
+		(property "Value" "~"
 			(at 74.168 51.054 0)
 			(effects
 				(font
@@ -9963,6 +10142,15 @@
 					(size 1.27 1.27)
 				)
 				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
+			(at 74.93 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 				(hide yes)
 			)
 		)
@@ -10067,6 +10255,15 @@
 				(hide yes)
 			)
 		)
+		(property "Mouser Part Number" ""
+			(at 38.1 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "61be5ce9-f43f-4d30-b8d3-a0d77fd1f680")
 		)
@@ -10135,6 +10332,15 @@
 			)
 		)
 		(property "Mouser" "SR211C"
+			(at 222.25 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
 			(at 222.25 120.65 0)
 			(effects
 				(font
@@ -10220,6 +10426,15 @@
 				(hide yes)
 			)
 		)
+		(property "Mouser Part Number" ""
+			(at 44.45 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "c0bb3482-02db-4acb-974f-37a325c1b806")
 		)
@@ -10288,6 +10503,15 @@
 			)
 		)
 		(property "Mouser" "SR211C"
+			(at 184.15 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
 			(at 184.15 114.3 0)
 			(effects
 				(font
@@ -10372,6 +10596,15 @@
 				(hide yes)
 			)
 		)
+		(property "Mouser Part Number" ""
+			(at 266.7 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "a0aeff75-4f68-429d-9442-413c54b0f70b")
 		)
@@ -10442,6 +10675,15 @@
 		)
 		(property "Mouser" "MFR-25FRF52"
 			(at 44.45 97.79 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
+			(at 44.45 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10529,6 +10771,15 @@
 				(hide yes)
 			)
 		)
+		(property "Mouser Part Number" ""
+			(at 38.1 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "b5defd3d-7a27-4d77-a7ac-264fff8df6b8")
 		)
@@ -10598,6 +10849,15 @@
 		)
 		(property "Mouser" "PT10LH01-504A2020"
 			(at 209.55 85.09 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
+			(at 209.55 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10684,6 +10944,15 @@
 				(hide yes)
 			)
 		)
+		(property "Mouser Part Number" ""
+			(at 196.85 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "1d029b16-7b06-4bf0-8324-e8e87fa91145")
 		)
@@ -10717,7 +10986,7 @@
 				)
 			)
 		)
-		(property "Value" "SW_SPDT"
+		(property "Value" "~"
 			(at 44.45 76.2 0)
 			(effects
 				(font
@@ -10754,6 +11023,15 @@
 			)
 		)
 		(property "Mouser" "100SP1T1B1M1QEH"
+			(at 44.45 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
 			(at 44.45 82.55 0)
 			(effects
 				(font
@@ -10853,10 +11131,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "c238d9f4-376d-4673-83a8-d69f996f7f64")
 		(property "Reference" "J1"
-			(at 283.21 53.3399 0)
+			(at 275.59 64.008 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10864,7 +11141,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "AudioJack"
+		(property "Value" "~"
 			(at 283.21 55.8799 0)
 			(effects
 				(font
@@ -10901,6 +11178,15 @@
 			)
 		)
 		(property "Mouser" "NMJ6HCD2"
+			(at 275.59 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
 			(at 275.59 55.88 0)
 			(effects
 				(font
@@ -10997,6 +11283,15 @@
 				(hide yes)
 			)
 		)
+		(property "Mouser Part Number" ""
+			(at 213.36 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "9b168d6c-ecb3-4a0e-8bf8-a21005dad298")
 		)
@@ -11067,6 +11362,15 @@
 		)
 		(property "Mouser" "MFR-25FRF52"
 			(at 44.45 110.49 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
+			(at 44.45 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11275,6 +11579,15 @@
 		)
 		(property "Mouser" "MFR-25FRF52"
 			(at 196.85 92.71 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
+			(at 196.85 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11491,6 +11804,15 @@
 				(hide yes)
 			)
 		)
+		(property "Mouser Part Number" ""
+			(at 241.3 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "ec818d8e-730d-4afa-aac3-fb1b15360ece")
 		)
@@ -11514,17 +11836,16 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "ea9156ca-3158-433c-b1a5-a86125649355")
 		(property "Reference" "U1"
-			(at 231.14 44.4814 0)
+			(at 224.536 45.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "LT972"
+		(property "Value" "~"
 			(at 231.14 47.0214 0)
 			(effects
 				(font
@@ -11560,6 +11881,15 @@
 			)
 		)
 		(property "Mouser" "595-TL972IP"
+			(at 222.25 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
 			(at 222.25 50.8 0)
 			(effects
 				(font
@@ -11862,6 +12192,15 @@
 				(hide yes)
 			)
 		)
+		(property "Mouser Part Number" ""
+			(at 191.77 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "2627a2a0-221a-4353-8d99-16456f1b717a")
 		)
@@ -11997,6 +12336,15 @@
 		)
 		(property "Mouser" "MFR-25FRF52"
 			(at 234.95 97.79 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
+			(at 234.95 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12140,6 +12488,15 @@
 			)
 		)
 		(property "Mouser" "SR211C"
+			(at 160.02 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
 			(at 160.02 54.61 0)
 			(effects
 				(font
