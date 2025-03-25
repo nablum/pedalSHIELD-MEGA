@@ -26,3 +26,4 @@ fp-info-cache
 
 # MacOs file
 *.DS_Store
+.vscode
