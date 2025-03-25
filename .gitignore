@@ -26,6 +26,19 @@ fp-info-cache
 *.dsn
 *.ses
 
+# For 3D designed using FreeCAD: https://www.freecad.org/
+# Format documentation: https://wiki.freecad.org/Category:File_Formats
+
+# Temporary files
+*.pyc
+*.fcstd1
+*.FCStd1
+*.fcstd2
+*.FCStd2
+*.FCBak
+Private
+*.bak
+
 # MacOs file
 *.DS_Store
 
