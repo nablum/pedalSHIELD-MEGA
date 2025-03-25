@@ -1,29 +1,26 @@
 # pedalSHIELD MEGA
-
 This repository is based on pedalSHIELD MEGA by electrosmash, a lo-fi programmable guitar pedal that works with the Arduino Mega 2560 board.
+<p align="center">
+    <img src="./hardware/kicad/pedalSHIELD_MEGA.jpg" alt="drawing" width="500"/>
+</p>
 
 # How is this repository different to the original pedalSHIELD MEGA?
-
 This version also has open source PCB project, protective case design, audio effects, and anything else needed to make the project yourself.
 
 # How Does the Circuit Work?
-
 This  [_hat_](https://www.hifiberry.com/blog/what-is-a-raspberry-pi-hat/) has three parts:
-
 -   Analog Input Stage: The weak guitar signal is amplified and filtered, making it ready for the Arduino MEGA ADC (Analog to Digital Converter).
 -   Arduino MEGA Board: It takes the digitalized waveform from the ADC and does all the DSP (Digital Signal Processing) creating effects (distortion, fuzz, bit-crusher, delay, etc).
 -   The Output Stage: Once the new effected waveform is created inside the Arduino MEGA board, this last stage takes it and using two combined PWMs generates the analog output signal.
-
-![pedalSHIELD MEGA Schematic](https://www.electrosmash.com/images/tech/pedalshield-mega/pedalshield-mega-stages.jpg)
+<p align="center">
+  <img src="https://www.electrosmash.com/images/tech/pedalshield-mega/pedalshield-mega-stages.jpg" />
+</p>
 
 # How to Program it?
-
 To make the programming as easy as possible, the [standard Arduino IDE](https://www.arduino.cc/en/Main/Software) is used. All the effects are programmed on C/C++ using the standard Arduino functions. All tools and programs are Open Source. The OLED screen uses the [U8glib](https://github.com/olikraus/u8glib) libraries (in the forum there is a tutorial explaining how to [install](http://www.electrosmash.com/forum/pedalshield-mega/290-arduino-mega-u8glib-libraries-installation) the Ug8lib and [use](http://www.electrosmash.com/forum/pedalshield-mega/292-vumeter-on-a-oled-128x64-i2c) them with some examples). Basic knowledge of C is needed to understand the codes. The best way to illustrate how to program it is showing a simple example:
-
-![block diagram of the software](https://www.electrosmash.com/images/tech/pedalshield-mega/pedalshield-mega-software-diagram.png)
+<p align="center">
+  <img src="https://www.electrosmash.com/images/tech/pedalshield-mega/pedalshield-mega-software-diagram.png" />
+</p>
 
 ## Need More Support?
-
-ElectroSmash Website
-
-Whilst some may be very outdated, information on how the project works, old schematics and Learning materials can be found [here](https://www.electrosmash.com/pedalshield-mega).
+[ElectroSmash Website](https://www.electrosmash.com/pedalshield-mega)
