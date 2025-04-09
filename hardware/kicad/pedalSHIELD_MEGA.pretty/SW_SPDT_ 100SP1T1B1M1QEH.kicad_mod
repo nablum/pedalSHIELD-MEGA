@@ -131,15 +131,15 @@
 		(thermal_bridge_angle 0)
 		(uuid "69daaeb1-fe8b-4101-9538-76b23dab1568")
 	)
-	(model "/Users/hugo/Documents/KiCad/8.0/3dmodels/pedalSHIELD_MEGA/100SP1T1B1M1QEH.stp"
+	(model "${KIPRJMOD}/packages3D/100SP1T1B1M1QEH.stp"
 		(offset
-			(xyz 0 0 8)
+			(xyz 0 0 7.6)
 		)
 		(scale
 			(xyz 1 1 1)
 		)
 		(rotate
-			(xyz 0 0 -90)
+			(xyz 0 0 90)
 		)
 	)
 )

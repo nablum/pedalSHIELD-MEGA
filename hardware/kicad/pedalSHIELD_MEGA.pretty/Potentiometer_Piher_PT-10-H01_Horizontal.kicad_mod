@@ -412,9 +412,9 @@
 		(remove_unused_layers no)
 		(uuid "5c891f92-c9bc-446d-9fd4-b86196941cee")
 	)
-	(model "/Users/hugo/Documents/KiCad/8.0/3dmodels/pedalSHIELD_MEGA/PT10LH01-101A2020.stp"
+	(model "${KIPRJMOD}/packages3D/PT10LH01-101A2020.stp"
 		(offset
-			(xyz -2.3 0 7)
+			(xyz -2.25 0 7)
 		)
 		(scale
 			(xyz 1 1 1)

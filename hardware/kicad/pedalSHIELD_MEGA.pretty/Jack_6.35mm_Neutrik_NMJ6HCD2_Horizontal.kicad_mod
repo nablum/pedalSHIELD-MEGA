@@ -526,18 +526,7 @@
 		(remove_unused_layers no)
 		(uuid "03413959-a55b-425e-afac-f7e0956f8ebf")
 	)
-	(model "${KICAD8_3DMODEL_DIR}/Connector_Audio.3dshapes/Jack_6.35mm_Neutrik_NMJ6HCD2_Horizontal.wrl"
-		(offset
-			(xyz 0 0 0)
-		)
-		(scale
-			(xyz 1 1 1)
-		)
-		(rotate
-			(xyz 0 0 0)
-		)
-	)
-	(model "/Users/hugo/Documents/KiCad/8.0/3dmodels/pedalSHIELD_MEGA/NMJ6HCD2.stp"
+	(model "${KIPRJMOD}/packages3D/NMJ6HCD2.stp"
 		(offset
 			(xyz 0 0 0)
 		)

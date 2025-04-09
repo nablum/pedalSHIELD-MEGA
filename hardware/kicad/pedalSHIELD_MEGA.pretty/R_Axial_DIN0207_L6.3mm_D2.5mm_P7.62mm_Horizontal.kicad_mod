@@ -254,7 +254,7 @@
 		(remove_unused_layers no)
 		(uuid "b5d7785e-1c71-4baa-a1ae-6a5a6fd8b46d")
 	)
-	(model "${KICAD8_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal.wrl"
+	(model "${KIPRJMOD}/packages3D/R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal.step"
 		(offset
 			(xyz 0 0 0)
 		)

@@ -268,7 +268,7 @@
 		(remove_unused_layers no)
 		(uuid "50be840b-b274-4710-b444-4154f0e8922a")
 	)
-	(model "/Users/hugo/Documents/KiCad/8.0/3dmodels/pedalSHIELD_MEGA/SF17020F-0302-21R-L-015.stp"
+	(model "${KIPRJMOD}/packages3D/SF17020F-0302-21R-L-015.stp"
 		(offset
 			(xyz 0 0 0)
 		)

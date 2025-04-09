@@ -102,7 +102,7 @@
 		)
 	)
 	(pad "1" thru_hole rect
-		(at -2.7 0)
+		(at -2 0)
 		(size 2 4)
 		(drill oval 0.8 2.8)
 		(layers "*.Cu" "*.Mask")
@@ -110,16 +110,16 @@
 		(uuid "f60fbd82-df5f-420e-b774-0db1d2e1b54a")
 	)
 	(pad "2" thru_hole rect
-		(at 2.7 0)
+		(at 2 0)
 		(size 2 4)
 		(drill oval 0.8 2.8)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(uuid "209b2853-89c1-4c8b-a628-285197bd3cfa")
 	)
-	(model "/Users/hugo/Documents/KiCad/8.0/3dmodels/pedalSHIELD_MEGA/103-1013-EVX.stp"
+	(model "${KIPRJMOD}/packages3D/103-1013-EVX.stp"
 		(offset
-			(xyz 0 0 1.5)
+			(xyz 0 0 1)
 		)
 		(scale
 			(xyz 1 1 1)

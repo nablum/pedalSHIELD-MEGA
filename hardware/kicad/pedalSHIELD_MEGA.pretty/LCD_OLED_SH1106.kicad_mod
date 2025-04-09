@@ -200,7 +200,7 @@
 			"a99c0a64-7c0f-48a1-8cfd-42b2f74a0fe0" "c40f3bc9-0f5a-4940-9356-81e5ef6addd4"
 		)
 	)
-	(model "/Users/hugo/Documents/KiCad/8.0/3dmodels/pedalSHIELD_MEGA/M20-7820446.stp"
+	(model "${KIPRJMOD}/packages3D/M20-7820446.stp"
 		(offset
 			(xyz -3.8 15.5 0)
 		)
