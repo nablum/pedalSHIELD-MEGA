@@ -15,15 +15,47 @@ importPedal(transparency=0.6);
 // *** MODULE *** //
 module buildCase(transparency=1){
     color(alpha=transparency){
-        buildBase(); // Base
-        buildLeftSide(); // Left side
+        buildBase();
+        buildLeftSide();
+        buildRightSide();
+        buildBottomSide(); 
+    }
+}
+
+module buildBottomSide(){
+    // Dimension
+    panelWidth = 66;
+    panelHeight = 30;
+    panelThickness = 2;
+    panelPosition = [-0.5,-63,panelHeight/2];    
+    
+    // Design
+    translate(panelPosition) cube([panelWidth,panelThickness,panelHeight],center=true);   
+}
+
+module buildRightSide(){
+    // Dimension    
+        // Panel
+        panelWidth = 128;
+        panelHeight = 30;
+        panelThickness = 2;
+        panelPosition = [31.5,0,panelHeight/2];
+    
+        // Hole
+        holeDiameter = 5;
+        holePosition = [panelPosition[0],-50,24-holeDiameter/2];
+    
+    // Design
+    difference(){
+        translate(panelPosition) cube([panelThickness,panelWidth,panelHeight],center=true); // Panel
+        translate(holePosition){ rotate([0,90,0]){ cylinder(panelThickness+$fs,holeDiameter,holeDiameter,center=true);}} // Hole
     }
 }
 
 module buildLeftSide(){
     // Dimension    
         // Panel
-        panelWidth = 122;
+        panelWidth = 128;
         panelHeight = 30;
         panelThickness = 2;
         panelPosition = [-32.5,0,panelHeight/2];
@@ -42,10 +74,10 @@ module buildLeftSide(){
 module buildBase(){
     // Dimensions    
         // Base
-        baseWidth = 67;
-        baseHeight = 122;
+        baseWidth = 66;
+        baseHeight = 128;
         baseThickness = 10;
-        basePosition = [0,0,-baseThickness/2];
+        basePosition = [-0.5,0,-baseThickness/2];
 
         // Cavity
         cavityThickness = 5;
