@@ -1,3 +1,5 @@
+// Licensed under a Creative Commons Attribution 4.0 International License.
+
 module import_pin_header(rotation=[0,0,0],translation=[0,0,0]){
     rotate(rotation){ 
         translate(translation){
@@ -124,5 +126,12 @@ module generate_pin_header(pinNumber=1,origin=[0,0,0],axis="z",direction="y",ori
                 place_pin_header(axis,direction,orientation);
             }
         }
+    }
+}
+
+module tube(length=10,outerDiameter=4,innerDiameter=2){
+    difference(){
+        cylinder(length,outerDiameter,outerDiameter);
+        cylinder(length+0.1,innerDiameter,innerDiameter);
     }
 }
