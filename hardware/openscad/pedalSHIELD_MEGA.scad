@@ -3,6 +3,9 @@
 // *** LIBRARY *** //
 include <lib.scad>
 
+// *** VISUALISATION *** //
+printing = true; // True for 3D print
+
 // *** DIMENSIONS *** //
 // System
 $fa = 1; // Minimum angle
@@ -74,18 +77,19 @@ $toggleSwitchHoleDiameter = 6;
 $toggleSwitchHolePosition = [0,16.5]; // X/Y
 
 // LCD window
-$lcdWindowEnable = false;
+$lcdWindowEnable = true;
 $lcdWindowWidth = 35;
 $lcdWindowLength = 24;
 $lcdWindowPosition = [0,41];
 
 // *** DESIGN *** //
 // Note: order matters for transparency
-importPedal();
-buildCase();
+if (printing) printCase();
+else buildCase(); 
 
 // *** MODULES *** //
 module buildCase(){
+    importPedal();
     addMounts();
     buildBottomPanel();
     buildLeftPanel();
@@ -93,4 +97,17 @@ module buildCase(){
     buildBackPanel(); 
     buildFrontPanel();
     color(alpha=0.5) buildTopPanel();
+}
+
+module printCase(){
+    translate([0,0,$baseThickness]){
+        buildBottomPanel();
+        buildLeftPanel();
+        buildRightPanel();
+        buildBackPanel(); 
+        buildFrontPanel();
+    }
+    translate([$caseWidth+5,0,-$sideHeight+$topThickness]){
+        buildTopPanel();
+    }
 }
