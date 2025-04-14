@@ -17,28 +17,29 @@ pedalHeight = 33;
 arduinoWidth = 53;
 arduinoLength = 99;
 arduinoHeight = 15;
+arduinoWeldsHeight = 1.5;
+
+// Cavity (to avoid conflict with arduino's welds)
+$cavityWidth = arduinoWidth-2;
+$cavityLength = arduinoLength-2;
+$cavityHeight = arduinoWeldsHeight+0.5;
+
+// Mounts
+$nutType = M3_nut;
+$screwType = M3_dome_screw;
+$screwPosition = [[24.68,45.65], // X/Y
+                  [24.68,-29.25],
+                  [-23.55,46.9],
+                  [-23.55,-35.6]];
 
 // Case
 $caseWidth = pedalWidth+2;
 $caseLength = pedalLength+4;
-$baseThickness = 5;
+$baseThickness = $cavityHeight+nut_thickness($nutType)+2;
 $sideHeight = 34;
 $sideThickness = 2;
 $topThickness = 2;
-
-// Cavity (to avoid conflict with arduino's welds)
-$cavityWidth = arduinoWidth - 2;
-$cavityLength = arduinoLength - 2;
-$cavityHeight = $baseThickness/2;
-
-// Board mounts
-$mountInnerDiameter = 4;
-$mountOuterDiameter = 6;
-$mountDepth = $baseThickness/2;
-$mountPosition = [[24.6,45.7], // X/Y
-                  [24.6,-29.1],
-                  [-23.6,47],
-                  [-23.6,-35.5]];
+$topSideOverlap = 0.5;
 
 // Audio jack
 $audioJackHoleDiameter = 10;
@@ -80,5 +81,16 @@ $lcdWindowPosition = [0,41];
 
 // *** DESIGN *** //
 // Note: order matters for transparency
-importPedal(transparency=1);
-buildCase(transparency=0.6);
+importPedal();
+buildCase();
+
+// *** MODULES *** //
+module buildCase(){
+    addMounts();
+    buildBottomPanel();
+    buildLeftPanel();
+    buildRightPanel();
+    buildBackPanel(); 
+    buildFrontPanel();
+    color(alpha=0.5) buildTopPanel();
+}

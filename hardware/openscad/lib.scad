@@ -1,65 +1,33 @@
 // Licensed under a Creative Commons Attribution 4.0 International License.
 
-module importPedal(transparency=1){
-    // Transparency
-    color(alpha=transparency){
-        // Origin alignment
-        translate([0.5,11.5,0]){
-            // Arduino Mega
-            rotate([90,0,-90]) import("./model3D/ArduinoMega_2560.stl");
-            // PCB
-            translate([-0.5,-11.5,12]) import("./model3D/pedalSHIELD_MEGA.stl");
-            // LCD
-            translate([-0.5,29.6,24.8]) import("./model3D/displayOLED.stl");
-            // Pin headers
-            generate_pin_header(8,[24.3,-37.1,12],"z","y","up"); // Bottom right side
-            generate_pin_header(8,[24.3,-14.3,12],"z","y","up"); // Middle right side
-            generate_pin_header(10,[24.3,7.6,12],"z","y","up"); // Top right side
-            generate_pin_header(8,[-24,-42.2,12],"z","y","up"); // Bottom left side
-            generate_pin_header(8,[-24,-19.3,12],"z","y","up"); // Middle left side
-            generate_pin_header(8,[-24,3.5,12],"z","y","up"); // Top left side
-        }
-    }
-}
+// Library
+include <NopSCADlib/lib.scad>
 
-module buildCase(transparency=1){
-    color(alpha=transparency){
-        buildBasePanel();
-        buildLeftPanel();
-        buildRightPanel();
-        buildBackPanel(); 
-        buildFrontPanel();
-        buildTopPanel();
-}
-
-module buildBracket(){
-    // Back left
-    translate([-($caseWidth/2-$bracketHoleDiameter-$bracketSideDistance),-($caseLength/2),$sideHeight-$topThickness]){
-        generate_bracket(bracketWidth=2*$bracketHoleDiameter,bracketLength=4*$bracketHoleDiameter,bracketThickness=$bracketThickness,holeDiameter=$bracketHoleDiameter);
-    }
-    // Back right
-    translate([($caseWidth/2-$bracketHoleDiameter-$bracketSideDistance),-($caseLength/2),$sideHeight-$topThickness]){
-        generate_bracket(bracketWidth=2*$bracketHoleDiameter,bracketLength=4*$bracketHoleDiameter,bracketThickness=$bracketThickness,holeDiameter=$bracketHoleDiameter);
-    }
-    // Top left
-    rotate([0,0,180]){
-        translate([($caseWidth/2-$bracketHoleDiameter-$bracketSideDistance),-($caseLength/2),$sideHeight-$topThickness]){
-            generate_bracket(bracketWidth=2*$bracketHoleDiameter,bracketLength=4*$bracketHoleDiameter,bracketThickness=$bracketThickness,holeDiameter=$bracketHoleDiameter);
-        }
-    }
-    // Top right
-    rotate([0,0,180]){
-        translate([-($caseWidth/2-$bracketHoleDiameter-$bracketSideDistance),-($caseLength/2),$sideHeight-$topThickness]){
-            generate_bracket(bracketWidth=2*$bracketHoleDiameter,bracketLength=4*$bracketHoleDiameter,bracketThickness=$bracketThickness,holeDiameter=$bracketHoleDiameter);
-        }
+// Modules
+module importPedal(){
+    // Origin alignment
+    translate([0.5,11.5,0]){
+        // Arduino Mega
+        rotate([90,0,-90]) import("./model3D/ArduinoMega_2560.stl");
+        // PCB
+        translate([-0.5,-11.5,12]) import("./model3D/pedalSHIELD_MEGA.stl");
+        // LCD
+        translate([-0.5,29.6,24.8]) import("./model3D/displayOLED.stl");
+        // Pin headers
+        generate_pin_header(8,[24.3,-37.1,12],"z","y","up"); // Bottom right side
+        generate_pin_header(8,[24.3,-14.3,12],"z","y","up"); // Middle right side
+        generate_pin_header(10,[24.3,7.6,12],"z","y","up"); // Top right side
+        generate_pin_header(8,[-24,-42.2,12],"z","y","up"); // Bottom left side
+        generate_pin_header(8,[-24,-19.3,12],"z","y","up"); // Middle left side
+        generate_pin_header(8,[-24,3.5,12],"z","y","up"); // Top left side
     }
 }
 
 module buildTopPanel(){
     difference(){
-        // Panel
+        // Top panel
         translate([0,0,$sideHeight-$topThickness/2]){
-            cube([$caseWidth,$caseLength,$topThickness],center=true);
+            cube([$caseWidth+2*$sideThickness*$topSideOverlap,$caseLength+2*$sideThickness*$topSideOverlap,$topThickness],center=true);
         }
         // Footswitch hole
         translate(concat($footSwitchHolePosition,$sideHeight-$topThickness/2)){ 
@@ -83,24 +51,19 @@ module buildTopPanel(){
                 cube([$lcdWindowWidth,$lcdWindowLength,$topThickness+$fs],center=true);
             }
         }
+        // Mount holes
+        addMounts();
     }
 }
 
-module buildBasePanel(){
+module buildBottomPanel(){
     difference(){
-        union(){
-            difference(){ // Cavity to avoid conflict with welds
-                translate([0,0,-$baseThickness/2]) cube([$caseWidth,$caseLength,$baseThickness],center=true); // Base
-                translate([0.5,11.5,-$cavityHeight/2]) cube([$cavityWidth,$cavityLength,$cavityHeight+$fs],center=true); // Cavity
-            }   
-            // Mounting bases
-            for(i=[0:len($mountPosition)-1]){
-                translate(concat($mountPosition[i],-$mountDepth/2)) cylinder($cavityHeight,d1=$mountOuterDiameter,d2=$mountOuterDiameter,center=true);
+        translate([0,0,-$baseThickness/2]) cube([$caseWidth,$caseLength,$baseThickness],center=true); // Base
+        translate([0.5,11.5,-$cavityHeight/2]) cube([$cavityWidth,$cavityLength,$cavityHeight+$fs],center=true); // Cavity
+        for(i=[0:len($screwPosition)-1]){ // Mount holders
+            translate([$screwPosition[i][0],$screwPosition[i][1],-((nut_thickness($nutType)+$cavityHeight)/2)]){
+                cylinder(nut_thickness($nutType)+$cavityHeight+$fs,nut_radius($nutType)+$fs,nut_radius($nutType)+$fs,$fn=6,center=true);
             }
-        }
-        // Mounting holes
-        for (i=[0:len($mountPosition)-1]){
-            translate(concat($mountPosition[i],-$mountDepth/2)) cylinder($mountDepth+$fs,d1=$mountInnerDiameter,d2=$mountInnerDiameter,center=true);
         }
     }
 }
@@ -117,7 +80,11 @@ module buildLeftPanel(){
                 cylinder($sideThickness+$fs,d1=$audioJackHoleDiameter,d2=$audioJackHoleDiameter,center=true);
             }
         }
-    }    
+        // Top panel overlap
+        translate([0,0,$sideHeight-$topThickness/2]){
+            cube([$caseWidth+2*$sideThickness*$topSideOverlap,$caseLength+2*$sideThickness*$topSideOverlap,$topThickness+$fs],center=true);
+        }
+    }
 }
 
 module buildRightPanel(){
@@ -138,13 +105,23 @@ module buildRightPanel(){
                 cylinder($sideThickness+$fs,d1=$potHoleDiameter,d2=$potHoleDiameter,center=true);
             }
         }
+        // Top panel overlap
+        translate([0,0,$sideHeight-$topThickness/2]){
+            cube([$caseWidth+2*$sideThickness*$topSideOverlap,$caseLength+2*$sideThickness*$topSideOverlap,$topThickness+$fs],center=true);
+        }
     }
 }
 
 module buildBackPanel(){
-    // Panel
-    translate([0,-($caseLength+$sideThickness)/2,($sideHeight-$baseThickness)/2]){
-        cube([$caseWidth+2*$sideThickness,$sideThickness,$sideHeight+$baseThickness],center=true);
+    difference(){
+        // Panel
+        translate([0,-($caseLength+$sideThickness)/2,($sideHeight-$baseThickness)/2]){
+            cube([$caseWidth+2*$sideThickness,$sideThickness,$sideHeight+$baseThickness],center=true);
+        }
+        // Top panel overlap
+        translate([0,0,$sideHeight-$topThickness/2]){
+            cube([$caseWidth+2*$sideThickness*$topSideOverlap,$caseLength+2*$sideThickness*$topSideOverlap,$topThickness+$fs],center=true);
+        }
     }
 }
 
@@ -161,6 +138,10 @@ module buildFrontPanel(){
         // Power supply connector
         translate([$dcJackHolePosition[0],($caseLength+$sideThickness)/2,$dcJackHolePosition[1]]){
             cube([$dcJackHoleWidth,$sideThickness+$fs,$dcJackHoleHeight],center=true);
+        }
+        // Top panel overlap
+        translate([0,0,$sideHeight-$topThickness/2]){
+            cube([$caseWidth+2*$sideThickness*$topSideOverlap,$caseLength+2*$sideThickness*$topSideOverlap,$topThickness+$fs],center=true);
         }
     }
 }
@@ -292,4 +273,14 @@ module generate_pin_header(pinNumber=1,origin=[0,0,0],axis="z",direction="y",ori
             }
         }
     }
-}module generate_bracket(bracketWidth=8,bracketLength=12,bracketThickness=2,holeDiameter=4){    difference(){        translate([0,bracketThickness/2,-bracketLength/2]) cube([bracketWidth,bracketThickness,bracketLength],center=true);        translate([0,bracketThickness/2,-2*bracketLength/3]) rotate([90,0,0]) cylinder(bracketThickness+$fs,d1=holeDiameter,d2=holeDiameter,center=true);    }    difference(){        translate([0,bracketLength/2,-bracketThickness/2]) cube([bracketWidth,bracketLength,bracketThickness],center=true);        translate([0,2*bracketLength/3,-bracketThickness/2]) cylinder(bracketThickness+$fs,d1=holeDiameter,d2=holeDiameter,center=true);    }}function positive(x) = (x > 0) ? x : 0;
+}
+
+module addMounts(){
+    // Nuts
+    for(i=[0:len($screwPosition)-1]){
+        translate([$screwPosition[i][0],$screwPosition[i][1],0]){ 
+            translate([0,0,-nut_thickness($nutType)-$cavityHeight]) nut($nutType);
+            translate([0,0,$sideHeight+$fs]) screw_and_washer($screwType,$sideHeight+nut_thickness($nutType)+$cavityHeight);
+        }
+    }
+}
