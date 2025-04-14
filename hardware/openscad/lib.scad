@@ -30,6 +30,28 @@ module buildCase(transparency=1){
         buildBackPanel(); 
         buildFrontPanel();
         buildTopPanel();
+}
+
+module buildBracket(){
+    // Back left
+    translate([-($caseWidth/2-$bracketHoleDiameter-$bracketSideDistance),-($caseLength/2),$sideHeight-$topThickness]){
+        generate_bracket(bracketWidth=2*$bracketHoleDiameter,bracketLength=4*$bracketHoleDiameter,bracketThickness=$bracketThickness,holeDiameter=$bracketHoleDiameter);
+    }
+    // Back right
+    translate([($caseWidth/2-$bracketHoleDiameter-$bracketSideDistance),-($caseLength/2),$sideHeight-$topThickness]){
+        generate_bracket(bracketWidth=2*$bracketHoleDiameter,bracketLength=4*$bracketHoleDiameter,bracketThickness=$bracketThickness,holeDiameter=$bracketHoleDiameter);
+    }
+    // Top left
+    rotate([0,0,180]){
+        translate([($caseWidth/2-$bracketHoleDiameter-$bracketSideDistance),-($caseLength/2),$sideHeight-$topThickness]){
+            generate_bracket(bracketWidth=2*$bracketHoleDiameter,bracketLength=4*$bracketHoleDiameter,bracketThickness=$bracketThickness,holeDiameter=$bracketHoleDiameter);
+        }
+    }
+    // Top right
+    rotate([0,0,180]){
+        translate([-($caseWidth/2-$bracketHoleDiameter-$bracketSideDistance),-($caseLength/2),$sideHeight-$topThickness]){
+            generate_bracket(bracketWidth=2*$bracketHoleDiameter,bracketLength=4*$bracketHoleDiameter,bracketThickness=$bracketThickness,holeDiameter=$bracketHoleDiameter);
+        }
     }
 }
 
@@ -270,4 +292,4 @@ module generate_pin_header(pinNumber=1,origin=[0,0,0],axis="z",direction="y",ori
             }
         }
     }
-}
+}module generate_bracket(bracketWidth=8,bracketLength=12,bracketThickness=2,holeDiameter=4){    difference(){        translate([0,bracketThickness/2,-bracketLength/2]) cube([bracketWidth,bracketThickness,bracketLength],center=true);        translate([0,bracketThickness/2,-2*bracketLength/3]) rotate([90,0,0]) cylinder(bracketThickness+$fs,d1=holeDiameter,d2=holeDiameter,center=true);    }    difference(){        translate([0,bracketLength/2,-bracketThickness/2]) cube([bracketWidth,bracketLength,bracketThickness],center=true);        translate([0,2*bracketLength/3,-bracketThickness/2]) cylinder(bracketThickness+$fs,d1=holeDiameter,d2=holeDiameter,center=true);    }}function positive(x) = (x > 0) ? x : 0;
