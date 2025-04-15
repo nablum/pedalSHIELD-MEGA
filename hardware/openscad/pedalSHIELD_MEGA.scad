@@ -4,6 +4,7 @@
 include <lib.scad>
 
 // *** VISUALISATION *** //
+view = "assembly"; // choose between "assembly", "printing", "cutting"
 printing = true; // True for 3D print
 
 // *** DIMENSIONS *** //
@@ -77,15 +78,15 @@ $toggleSwitchHoleDiameter = 6;
 $toggleSwitchHolePosition = [0,16.5]; // X/Y
 
 // LCD window
-$lcdWindowEnable = true;
+$lcdWindowEnable = false;
 $lcdWindowWidth = 35;
 $lcdWindowLength = 24;
 $lcdWindowPosition = [0,41];
 
 // *** DESIGN *** //
-// Note: order matters for transparency
-if (printing) printCase();
-else buildCase(); 
+if(view=="assembly") buildCase();
+if(view=="printing") printCase();
+if(view=="cutting") cutCase();
 
 // *** MODULES *** //
 module buildCase(){
@@ -110,4 +111,10 @@ module printCase(){
     translate([$caseWidth+5,0,-$sideHeight+$topThickness]){
         buildTopPanel();
     }
+}
+
+module cutCase(){
+    projection(cut = false){
+        buildTopPanel();
+    }    
 }
