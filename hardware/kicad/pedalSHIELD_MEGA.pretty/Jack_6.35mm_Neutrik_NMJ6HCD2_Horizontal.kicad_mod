@@ -528,7 +528,7 @@
 	)
 	(model "${KIPRJMOD}/packages3D/NMJ6HCD2.stp"
 		(offset
-			(xyz 0 0 0)
+			(xyz 0 0 1.5)
 		)
 		(scale
 			(xyz 1 1 1)

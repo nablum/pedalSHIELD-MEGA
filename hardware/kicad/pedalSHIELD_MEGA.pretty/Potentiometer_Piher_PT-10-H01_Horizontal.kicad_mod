@@ -414,7 +414,7 @@
 	)
 	(model "${KIPRJMOD}/packages3D/PT10LH01-101A2020.stp"
 		(offset
-			(xyz -2.25 0 7)
+			(xyz -2.25 0 9)
 		)
 		(scale
 			(xyz 1 1 1)

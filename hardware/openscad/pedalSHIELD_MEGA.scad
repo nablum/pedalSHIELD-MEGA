@@ -21,7 +21,7 @@ pedalHeight = 33;
 arduinoWidth = 53;
 arduinoLength = 99;
 arduinoHeight = 15;
-arduinoWeldsHeight = 1.5;
+arduinoWeldsHeight = 2.5;
 
 // Cavity (to avoid conflict with arduino's welds)
 $cavityWidth = arduinoWidth-2;
@@ -37,8 +37,8 @@ $screwPosition = [[24.68,45.65], // X/Y
                   [-23.55,-35.6]];
 
 // Case
-$caseWidth = pedalWidth+2;
-$caseLength = pedalLength+4;
+$caseWidth = pedalWidth+0.5;
+$caseLength = pedalLength+0.5;
 $baseThickness = $cavityHeight+nut_thickness($nutType)+2;
 $sideHeight = 34;
 $sideThickness = 2;
@@ -46,42 +46,42 @@ $topThickness = 2;
 $topSideOverlap = 0.5;
 
 // Audio jack
-$audioJackHoleDiameter = 10;
-$audioJackHolePosition = [[-49.8,21.7], // Y/Z - Left/Right
-                          [-49.8,21.7]]; 
+$audioJackHoleDiameter = 12;
+$audioJackHolePosition = [[-49.8,23.2], // Y/Z - Left/Right
+                          [-49.8,23.2]]; 
 
 // DC jack
 $dcJackHolePosition = [-18.3,7.1]; // X/Z
 $dcJackHoleWidth = 9.5;
-$dcJackHoleHeight = 11;
+$dcJackHoleHeight = 12;
 
 // USB
-$usbHolePosition = [12.1,6.6]; // X/Z
+$usbHolePosition = [12.1,7]; // X/Z
 $usbHoleWidth = 13;
-$usbHoleHeight = 11.5;
+$usbHoleHeight = 12.5;
 
 // Potentiometer
 $potHoleDiameter = 4;
-$potHolePosition = [54.5,20.6]; // Y/Z
+$potHolePosition = [54.5,22.6]; // Y/Z
 
 // Foot switch
 $footSwitchHoleDiameter = 12.6;
 $footSwitchHolePosition = [0,-25.5]; // X/Y
 
 // Push buttons
-$pushButtonHoleDiameter = 6.4;
+$pushButtonHoleDiameter = 7;
 $pushButtonHolePosition = [[-15,16.5], // X/Y - Left/Right
                            [15,16.5]];
 
 // Toggle switch
-$toggleSwitchHoleDiameter = 6;
+$toggleSwitchHoleDiameter = 7;
 $toggleSwitchHolePosition = [0,16.5]; // X/Y
 
 // LCD window
 $lcdWindowEnable = false;
-$lcdWindowWidth = 35;
-$lcdWindowLength = 24;
-$lcdWindowPosition = [0,41];
+$lcdWindowWidth = 31;
+$lcdWindowLength = 16;
+$lcdWindowPosition = [0,44];
 
 // *** DESIGN *** //
 if(view=="assembly") buildCase();
