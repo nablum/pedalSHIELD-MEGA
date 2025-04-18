@@ -18,23 +18,29 @@ U8GLIB_SH1106_128X64 u8g(U8G_I2C_OPT_NO_ACK);
 #define PWM_QTY 2 // 2 PWMs in parallel
 
 //system variables
-int output, outputAL, outputBL, counter = 0;
+int output, counter = 0;
 unsigned int ADC_low, ADC_high, effect_type = 1;
 
 //effect variables
+#define MAX_EFFECT 6
 #define MAX_DELAY 7500
 #define MIN_DELAY 20
 #define MAX_BIT 8
 #define MIN_BIT 1
 #define MAX_OUTPUT 32768
 #define MIN_OUTPUT 20
+#define MAX_octaver_mode 3
 byte DelayBuffer[MAX_DELAY];
 unsigned int DelayCounter = 0;
 unsigned int DelayDepth = 1000;
 unsigned int EchoDepth = 4000;
+unsigned int DelayOctaver = 1000;
 int distortion_threshold = 6000;
 int fuzz_threshold = 6000;
-int bit_crush_variable = 4;
+int bit_crush_variable = 2;
+int octaver_mode = 1;
+int octave_crusher_threshold = 15;
+bool write_pwm = true;
  
 void setup() 
 { 
@@ -70,7 +76,7 @@ void loop()
   while(digitalRead(TOGGLE) && digitalRead(FOOTSWITCH))
   { 
     digitalWrite(LED, HIGH);
-    if(!digitalRead(PUSHBUTTON_2)) if(effect_type<5) effect_type++;
+    if(!digitalRead(PUSHBUTTON_2)) if(effect_type<MAX_EFFECT) effect_type++;
     if(!digitalRead(PUSHBUTTON_1)) if(effect_type>1) effect_type--;
     switch(effect_type)
     {
@@ -112,6 +118,14 @@ void loop()
           u8g.setFont(u8g_font_helvR14r);
           u8g.drawStr( 10, 16, "SELECTION");    
           u8g.drawStr( 0, 50, "BIT CRUSHER");
+          } while( u8g.nextPage() );
+      break;
+      case 6: //6th effect
+      u8g.firstPage();
+      do {
+          u8g.setFont(u8g_font_helvR14r);
+          u8g.drawStr( 10, 16, "SELECTION");    
+          u8g.drawStr( 18, 50, "OCTAVER");
           } while( u8g.nextPage() );
       break;
     }
@@ -172,6 +186,17 @@ void loop()
           u8g.print(bit_crush_variable);
           } while( u8g.nextPage() );
       break;
+      case 6: //6th effect
+      u8g.firstPage();
+      do {
+          u8g.setFont(u8g_font_helvR14r);
+          u8g.drawStr( 18, 16, "OCTAVER");
+          switch(octaver_mode){
+          case 1: u8g.drawStr( 52, 50, "UP"); break;
+          case 2: u8g.drawStr( 35, 50, "DOWN"); break; 
+          case 3: u8g.drawStr( 16, 50, "CRUSHER"); break;} 
+          } while( u8g.nextPage() );
+      break;
     } 
   }
   else  
@@ -181,7 +206,7 @@ void loop()
     do {
       u8g.setFont(u8g_font_helvR24r);
       u8g.drawStr( 0, 30, "EFFECT");    
-      u8g.drawStr( 0, 60, "  OFF ");   
+      u8g.drawStr( 32, 60, "OFF");   
     } while( u8g.nextPage() );
   }
 }
@@ -190,7 +215,7 @@ ISR(TIMER4_CAPT_vect)
 {
   //button status
   counter++; 
-  if(counter==2000)
+  if(counter==3000)
   {
     counter=0;
     //increase
@@ -199,19 +224,22 @@ ISR(TIMER4_CAPT_vect)
       switch(effect_type)
       {
         case 1: //1st effect
-        if (DelayDepth<MAX_DELAY)DelayDepth=DelayDepth+25; //increase delay
+        if (DelayDepth<MAX_DELAY)DelayDepth+=25; //increase delay
         break;
         case 2: //2nd effect
-        if (EchoDepth<MAX_DELAY)EchoDepth=EchoDepth+25; //increase echo
+        if (EchoDepth<MAX_DELAY)EchoDepth+=25; //increase echo
         break;
         case 3: //3rd effect
-        if (distortion_threshold<MAX_OUTPUT)distortion_threshold=distortion_threshold+25; //increase distortion threshold
+        if (distortion_threshold<MAX_OUTPUT)distortion_threshold+=25; //increase distortion threshold
         break;
         case 4: //4th effect
-        if (fuzz_threshold<MAX_OUTPUT)fuzz_threshold=fuzz_threshold+25; //increase fuzz threshold
+        if (fuzz_threshold<MAX_OUTPUT)fuzz_threshold+=25; //increase fuzz threshold
         break;
         case 5: //5th effect
-        if (bit_crush_variable<MAX_BIT)bit_crush_variable=bit_crush_variable+1; //increase the number of crushed bits
+        if (bit_crush_variable<MAX_BIT)bit_crush_variable++; //increase the number of crushed bits
+        break;
+        case 6: //6th effect
+        if(octaver_mode<MAX_octaver_mode)octaver_mode++; //change the octave mode
         break;
       }
     }
@@ -221,19 +249,22 @@ ISR(TIMER4_CAPT_vect)
       switch(effect_type)
       {
         case 1: //1st effect
-        if (DelayDepth>MIN_DELAY)DelayDepth=DelayDepth-25; //decrease delay
+        if (DelayDepth>MIN_DELAY)DelayDepth-=25; //decrease delay
         break;
         case 2: //2nd effect
-        if (EchoDepth>MIN_DELAY)EchoDepth=EchoDepth-25; //decrease echo
+        if (EchoDepth>MIN_DELAY)EchoDepth-=25; //decrease echo
         break;
         case 3: //3rd effect
-        if (distortion_threshold>MIN_OUTPUT)distortion_threshold=distortion_threshold-25; //decrease distortion threshold
+        if (distortion_threshold>MIN_OUTPUT)distortion_threshold-=25; //decrease distortion threshold
         break;
         case 4: //4th effect
-        if (fuzz_threshold>MIN_OUTPUT)fuzz_threshold=fuzz_threshold-25; //decrease fuzz threshold
+        if (fuzz_threshold>MIN_OUTPUT)fuzz_threshold-=25; //decrease fuzz threshold
         break;
         case 5: //5th effect
-        if (bit_crush_variable>MIN_BIT)bit_crush_variable=bit_crush_variable-1; //decrease the number of crushed bits
+        if (bit_crush_variable>MIN_BIT)bit_crush_variable--; //decrease the number of crushed bits
+        break;
+        case 6: //6th effect
+        if (octaver_mode>1)octaver_mode--; //change the octave mode
         break;
       }
     }
@@ -276,9 +307,31 @@ ISR(TIMER4_CAPT_vect)
     case 5: //5th effect: bit crusher
     output = output<<bit_crush_variable;
     break;
+
+    case 6: //6th effect: octaver
+    DelayBuffer[DelayCounter] = (ADC_high)>>1 ; 
+    DelayCounter++;
+    if(DelayCounter >= DelayOctaver) DelayCounter = 0;
+    switch(octaver_mode){
+    case 1: 
+    output = ((DelayBuffer[(DelayCounter*2+DelayOctaver/2)%DelayOctaver] << 8) | ADC_low) + 0x8000;
+    break;
+    case 2:
+    output = ((DelayBuffer[(int(DelayCounter/2)+DelayOctaver/2)%DelayOctaver] << 8) | ADC_low) + 0x8000;
+    break;
+    case 3:
+    if(DelayCounter%octave_crusher_threshold) write_pwm = false; 
+    break;
+    }
   }
- 
+
   //write the PWM signal
-  OCR4AL = ((output + 0x8000) >> 8);;
-  OCR4BL = output;
+  if (write_pwm){
+    OCR4AL = ((output + 0x8000) >> 8);
+    OCR4BL = output;
+  }
+
+  // Reset flag
+  write_pwm = true; 
+  
 }

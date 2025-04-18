@@ -20,16 +20,14 @@ U8GLIB_SH1106_128X64 u8g(U8G_I2C_OPT_NO_ACK);
 //system variables
 int output;
 int counter = 0;
+unsigned int ADC_low;
 
 //effect variables
 #define DELAY_MAX 1000
-byte DelayBufferL[DELAY_MAX];
-byte DelayBufferH[DELAY_MAX];
+byte DelayBuffer[DELAY_MAX];
 unsigned int DelayCounter = 0;
 unsigned int divider = 0;
 unsigned int mode = 0;
-unsigned int DelayCounterL = 0;
-unsigned int DelayCounterH = DELAY_MAX/2;
  
 void setup() 
 {
@@ -95,30 +93,23 @@ ISR(TIMER4_CAPT_vect)
   }
   
   //store ADC data
-  DelayBufferL[DelayCounter] = ADCL;
-  DelayBufferH[DelayCounter] = ADCH;
+  ADC_low = ADCL;
+  DelayBuffer[DelayCounter] = ADCH;
+
+  //increse/reset delay counter
+  DelayCounter++;
+  if(DelayCounter >= DELAY_MAX) DelayCounter = 0; 
 
   //octaver
   switch(mode)
   {
     case 0: //octave-up 
-    DelayCounterL += 2;
-    DelayCounterH += 2;
+    output = ((DelayBuffer[(DelayCounter*2+DELAY_MAX/2)%DELAY_MAX] << 8) | ADC_low) + 0x8000;
     break;
     case 1: //octave-down
-    divider++;
-    if(divider>=2) {DelayCounterL++;DelayCounterH++;divider=0;}
+    output = ((DelayBuffer[(int(DelayCounter/2)+DELAY_MAX/2)%DELAY_MAX] << 8) | ADC_low) + 0x8000;
     break;
   }
-
-  //increse/reset delay counter
-  DelayCounter++;
-  if(DelayCounter >= DELAY_MAX) DelayCounter = 0;
-  if(DelayCounterL >= DELAY_MAX) DelayCounterL = 0; 
-  if(DelayCounterH >= DELAY_MAX) DelayCounterH = 0; 
- 
-  //construct the output sample
-  output = ((DelayBufferH[DelayCounterH] << 8) | DelayBufferL[DelayCounterL]) + 0x8000;
 
   //write the PWM signal
   OCR4AL = ((output + 0x8000) >> 8);
