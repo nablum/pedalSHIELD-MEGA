@@ -17,7 +17,7 @@ U8GLIB_SH1106_128X64 u8g(U8G_I2C_OPT_NO_ACK);
 #define PWM_QTY 2 // 2 PWMs in parallel
 
 //system variables
-int output, output, counter, count_up=0;
+int output, counter, count_up=0;
 unsigned int ADC_low, ADC_high;
 
 //effect variables
@@ -125,7 +125,7 @@ ISR(TIMER4_CAPT_vect)
   DelayCounter++;
   if(DelayCounter >= DelayDepth) 
   {
-    DelayCounter = 0; 
+    DelayCounter = 0;
     if(count_up)
     {
        for(int p=0;p<10;p++) DelayBuffer[DelayDepth+p]=DelayBuffer[DelayDepth-1]; 
@@ -141,7 +141,7 @@ ISR(TIMER4_CAPT_vect)
 
   //effect selection
   if(digitalRead(TOGGLE)) output = DelayBuffer[DelayCounter]; //vibrato
-  else output = (DelayBuffer[DelayCounter] + (((ADC_high << 8) | ADC_low) + 0x8000))>>1 ; //chorus
+  else output = DelayBuffer[DelayCounter] + (((ADC_high << 8) | ADC_low) + 0x8000) ; //chorus
  
   //write the PWM signal
   OCR4AL = ((output + 0x8000) >> 8);

@@ -18,29 +18,40 @@ U8GLIB_SH1106_128X64 u8g(U8G_I2C_OPT_NO_ACK);
 #define PWM_QTY 2 // 2 PWMs in parallel
 
 //system variables
-int output, counter = 0;
-unsigned int ADC_low, ADC_high, effect_type = 1;
+int output;
+int counter = 0;
+int effect = 1;
+unsigned int ADC_low, ADC_high;
 
 //effect variables
-#define MAX_EFFECT 6
-#define MAX_DELAY 7500
+#define EFFECT_NUMBER 9
+#define MAX_DELAY 5000
 #define MIN_DELAY 20
 #define MAX_BIT 8
 #define MIN_BIT 1
-#define MAX_OUTPUT 32768
-#define MIN_OUTPUT 20
-#define MAX_octaver_mode 3
-byte DelayBuffer[MAX_DELAY];
-unsigned int DelayCounter = 0;
-unsigned int DelayDepth = 1000;
-unsigned int EchoDepth = 4000;
-unsigned int DelayOctaver = 1000;
-int distortion_threshold = 6000;
-int fuzz_threshold = 6000;
-int bit_crush_variable = 2;
-int octaver_mode = 1;
-int octave_crusher_threshold = 15;
-bool write_pwm = true;
+#define MAX_LEVEL 32768
+#define MIN_LEVEL 1000
+#define MAX_octaveCrusher 50
+#define MIN_octaveCrusher 1
+#define MAX_VIBRATO 200
+#define MIN_VIBRATO 10
+#define MAX_CHORUS 200
+#define MIN_CHORUS 10
+byte audioBuffer[MAX_DELAY];
+int audioCounter = 0;
+int delayDepth = 1000;
+int echoDepth = 4000;
+int octaverDelay = 1000;
+int vibratoDepth = 100;
+int chorusDepth = 100;
+int lfoDepth = 100;
+int distortion = 6000;
+int fuzz = 6000;
+int bitCrush = 2;
+int octaveCrusher = 15;
+bool octaverMode = 0;
+bool countUp = false;
+bool writePWM = true;
  
 void setup() 
 { 
@@ -76,9 +87,9 @@ void loop()
   while(digitalRead(TOGGLE) && digitalRead(FOOTSWITCH))
   { 
     digitalWrite(LED, HIGH);
-    if(!digitalRead(PUSHBUTTON_2)) if(effect_type<MAX_EFFECT) effect_type++;
-    if(!digitalRead(PUSHBUTTON_1)) if(effect_type>1) effect_type--;
-    switch(effect_type)
+    if(!digitalRead(PUSHBUTTON_2)) if(effect<EFFECT_NUMBER) effect++;
+    if(!digitalRead(PUSHBUTTON_1)) if(effect>1) effect--;
+    switch(effect)
     {
       case 1: //1st effect
       u8g.firstPage();
@@ -128,13 +139,38 @@ void loop()
           u8g.drawStr( 18, 50, "OCTAVER");
           } while( u8g.nextPage() );
       break;
+      case 7: //7th effect
+      u8g.firstPage();
+      do {
+          u8g.setFont(u8g_font_helvR14r);
+          u8g.drawStr( 10, 16, "SELECTION");    
+          u8g.setFont(u8g_font_helvR10r);
+          u8g.drawStr( 0, 50, "OCTAVE CRUSHER");
+          } while( u8g.nextPage() );
+      break;
+      case 8: //8th effect
+      u8g.firstPage();
+      do {
+          u8g.setFont(u8g_font_helvR14r);
+          u8g.drawStr( 10, 16, "SELECTION");    
+          u8g.drawStr( 22, 50, "VIBRATO");
+          } while( u8g.nextPage() );
+      break;
+      case 9: //9th effect
+      u8g.firstPage();
+      do {
+          u8g.setFont(u8g_font_helvR14r);
+          u8g.drawStr( 10, 16, "SELECTION");    
+          u8g.drawStr( 22, 50, "CHORUS");
+          } while( u8g.nextPage() );
+      break;
     }
   }
   /* effect mode */
   if (digitalRead(FOOTSWITCH)) 
   {
     digitalWrite(LED, HIGH);
-    switch(effect_type)
+    switch(effect)
     {
       case 1: //1st effect
       u8g.firstPage();
@@ -143,7 +179,7 @@ void loop()
           u8g.drawStr( 0, 16, "DELAY");    
           u8g.setPrintPos(10, 50); 
           u8g.setFont(u8g_font_helvR24r); 
-          u8g.print(DelayDepth);
+          u8g.print(delayDepth);
           } while( u8g.nextPage() );
       break;
       case 2: //2nd effect
@@ -153,7 +189,7 @@ void loop()
           u8g.drawStr( 0, 16, "ECHO");    
           u8g.setPrintPos(10, 50); 
           u8g.setFont(u8g_font_helvR24r); 
-          u8g.print(EchoDepth);
+          u8g.print(echoDepth);
           } while( u8g.nextPage() );
       break;
       case 3: //3rd effect
@@ -163,7 +199,7 @@ void loop()
           u8g.drawStr( 0, 16, "DISTORTION");    
           u8g.setPrintPos(10, 50); 
           u8g.setFont(u8g_font_helvR24r); 
-          u8g.print(distortion_threshold);
+          u8g.print(distortion);
           } while( u8g.nextPage() );
       break;
       case 4: //4th effect
@@ -173,7 +209,7 @@ void loop()
           u8g.drawStr( 0, 16, "FUZZ");    
           u8g.setPrintPos(10, 50); 
           u8g.setFont(u8g_font_helvR24r); 
-          u8g.print(fuzz_threshold);
+          u8g.print(fuzz);
           } while( u8g.nextPage() );
       break;
       case 5: //5th effect
@@ -183,7 +219,7 @@ void loop()
           u8g.drawStr( 0, 16, "BIT CRUSHER");    
           u8g.setPrintPos(10, 50); 
           u8g.setFont(u8g_font_helvR24r); 
-          u8g.print(bit_crush_variable);
+          u8g.print(bitCrush);
           } while( u8g.nextPage() );
       break;
       case 6: //6th effect
@@ -191,11 +227,49 @@ void loop()
       do {
           u8g.setFont(u8g_font_helvR14r);
           u8g.drawStr( 18, 16, "OCTAVER");
-          switch(octaver_mode){
-          case 1: u8g.drawStr( 52, 50, "UP"); break;
-          case 2: u8g.drawStr( 35, 50, "DOWN"); break; 
-          case 3: u8g.drawStr( 16, 50, "CRUSHER"); break;} 
-          } while( u8g.nextPage() );
+          switch(octaverMode){
+            case true: u8g.drawStr( 52, 50, "UP"); break;
+            case false: u8g.drawStr( 35, 50, "DOWN"); break;
+          } 
+      } while( u8g.nextPage() );
+      break;
+      case 7: //7th effect
+      u8g.firstPage();
+      do {
+        u8g.setFont(u8g_font_helvR10r);
+        u8g.drawStr( 0, 16, "OCTAVE CRUSHER");
+        u8g.setPrintPos(45, 50); 
+        u8g.setFont(u8g_font_helvR24r); 
+        u8g.print(octaveCrusher);
+      } while( u8g.nextPage() );
+      break;
+      case 8: //8th effect
+      u8g.firstPage();
+      do {
+        u8g.setFont(u8g_font_helvR14r);
+        u8g.drawStr( 22, 16, "VIBRATO");
+        u8g.setFont(u8g_font_helvR24r); 
+        u8g.setPrintPos(10, 60); 
+        u8g.print(vibratoDepth);
+        u8g.setFont(u8g_font_helvR14r); 
+        u8g.setPrintPos(100, 60); 
+        u8g.print(countUp);
+
+      } while( u8g.nextPage() );
+      break;
+      case 9: //9th effect
+      u8g.firstPage();
+      do {
+        u8g.setFont(u8g_font_helvR14r);
+        u8g.drawStr( 22, 16, "CHORUS");
+        u8g.setFont(u8g_font_helvR24r); 
+        u8g.setPrintPos(10, 60); 
+        u8g.print(chorusDepth);
+        u8g.setFont(u8g_font_helvR14r); 
+        u8g.setPrintPos(100, 60); 
+        u8g.print(countUp);
+
+      } while( u8g.nextPage() );
       break;
     } 
   }
@@ -215,56 +289,74 @@ ISR(TIMER4_CAPT_vect)
 {
   //button status
   counter++; 
-  if(counter==3000)
+  if(counter==2000)
   {
     counter=0;
     //increase
     if (!digitalRead(PUSHBUTTON_2) && !digitalRead(TOGGLE)) 
     {
-      switch(effect_type)
+      switch(effect)
       {
         case 1: //1st effect
-        if (DelayDepth<MAX_DELAY)DelayDepth+=25; //increase delay
+        if (delayDepth<MAX_DELAY)delayDepth+=25; //increase delay
         break;
         case 2: //2nd effect
-        if (EchoDepth<MAX_DELAY)EchoDepth+=25; //increase echo
+        if (echoDepth<MAX_DELAY)echoDepth+=25; //increase echo
         break;
         case 3: //3rd effect
-        if (distortion_threshold<MAX_OUTPUT)distortion_threshold+=25; //increase distortion threshold
+        if (distortion<MAX_LEVEL)distortion+=25; //increase distortion threshold
         break;
         case 4: //4th effect
-        if (fuzz_threshold<MAX_OUTPUT)fuzz_threshold+=25; //increase fuzz threshold
+        if (fuzz<MAX_LEVEL)fuzz+=25; //increase fuzz threshold
         break;
         case 5: //5th effect
-        if (bit_crush_variable<MAX_BIT)bit_crush_variable++; //increase the number of crushed bits
+        if (bitCrush<MAX_BIT)bitCrush++; //increase the number of crushed bits
         break;
         case 6: //6th effect
-        if(octaver_mode<MAX_octaver_mode)octaver_mode++; //change the octave mode
+        if(!octaverMode)octaverMode=true; //change the octave mode
+        break;
+        case 7: //7th effect
+        if (octaveCrusher<MAX_octaveCrusher)octaveCrusher++; //increase octave crusher
+        break;
+        case 8: //8th effect
+        if (vibratoDepth<MAX_VIBRATO)vibratoDepth++; //increase vibrato depth
+        break;
+        case 9: //9th effect
+        if (chorusDepth<MAX_CHORUS)chorusDepth++; //increase chorus depth
         break;
       }
     }
     //decrease
     if (!digitalRead(PUSHBUTTON_1) && !digitalRead(TOGGLE)) 
     {
-      switch(effect_type)
+      switch(effect)
       {
         case 1: //1st effect
-        if (DelayDepth>MIN_DELAY)DelayDepth-=25; //decrease delay
+        if (delayDepth>MIN_DELAY)delayDepth-=25; //decrease delay
         break;
         case 2: //2nd effect
-        if (EchoDepth>MIN_DELAY)EchoDepth-=25; //decrease echo
+        if (echoDepth>MIN_DELAY)echoDepth-=25; //decrease echo
         break;
         case 3: //3rd effect
-        if (distortion_threshold>MIN_OUTPUT)distortion_threshold-=25; //decrease distortion threshold
+        if (distortion>MIN_LEVEL)distortion-=25; //decrease distortion threshold
         break;
         case 4: //4th effect
-        if (fuzz_threshold>MIN_OUTPUT)fuzz_threshold-=25; //decrease fuzz threshold
+        if (fuzz>MIN_LEVEL)fuzz-=25; //decrease fuzz threshold
         break;
         case 5: //5th effect
-        if (bit_crush_variable>MIN_BIT)bit_crush_variable--; //decrease the number of crushed bits
+        if (bitCrush>MIN_BIT)bitCrush--; //decrease the number of crushed bits
         break;
         case 6: //6th effect
-        if (octaver_mode>1)octaver_mode--; //change the octave mode
+        if (octaverMode)octaverMode=false; //change the octave mode
+        break;
+        case 7: //7th effect
+        if (octaveCrusher>MIN_octaveCrusher)octaveCrusher--; //decrease octave crusher
+        break;
+        case 8: //8th effect
+        if (vibratoDepth>MIN_VIBRATO)vibratoDepth--; //decrease vibrato depth
+        break;
+        case 9: //9th effect
+        if (chorusDepth>MIN_CHORUS)chorusDepth--; //decrease chorus depth
         break;
       }
     }
@@ -278,60 +370,95 @@ ISR(TIMER4_CAPT_vect)
   output = ((ADC_high << 8) | ADC_low) + 0x8000;
 
   //audio processing
-  switch(effect_type)
+  switch(effect)
   {
     case 1: //1st effect: delay
-    DelayBuffer[DelayCounter] = (ADC_high)>>1 ; 
-    DelayCounter++;
-    if(DelayCounter >= DelayDepth) DelayCounter = 0; 
-    output = ((((DelayBuffer[DelayCounter]+(ADC_high))>>1) << 8) | ADC_low) + 0x8000;
+    audioBuffer[audioCounter] = ADC_high>>1 ; 
+    audioCounter++;
+    if(audioCounter >= delayDepth) audioCounter = 0; 
+    output = ((((audioBuffer[audioCounter]+(ADC_high))>>1) << 8) | ADC_low) + 0x8000;
     break;
 
     case 2: //2nd effect: echo
-    DelayBuffer[DelayCounter] = (ADC_high + DelayBuffer[DelayCounter])>>1 ; 
-    DelayCounter++;
-    if(DelayCounter >= EchoDepth) DelayCounter = 0; 
-    output = ((((DelayBuffer[DelayCounter]+(ADC_high))>>1) << 8) | ADC_low) + 0x8000;
+    audioBuffer[audioCounter] = (ADC_high + audioBuffer[audioCounter])>>1 ; 
+    audioCounter++;
+    if(audioCounter >= echoDepth) audioCounter = 0; 
+    output = ((((audioBuffer[audioCounter]+(ADC_high))>>1) << 8) | ADC_low) + 0x8000;
     break;
 
     case 3: //3rd effect: distortion
-    if(output>distortion_threshold) output=distortion_threshold;
-    if(output<-distortion_threshold) output=-distortion_threshold;
+    if(output>distortion) output=distortion;
+    if(output<-distortion) output=-distortion;
     break;
 
     case 4: //4th effect: fuzz
-    if(output>fuzz_threshold) output=32768;
-    if(output<-fuzz_threshold) output=-32768;
+    if(output>fuzz) output=32768;
+    if(output<-fuzz) output=-32768;
     break;
 
     case 5: //5th effect: bit crusher
-    output = output<<bit_crush_variable;
+    output = output<<bitCrush;
     break;
 
     case 6: //6th effect: octaver
-    DelayBuffer[DelayCounter] = (ADC_high)>>1 ; 
-    DelayCounter++;
-    if(DelayCounter >= DelayOctaver) DelayCounter = 0;
-    switch(octaver_mode){
-    case 1: 
-    output = ((DelayBuffer[(DelayCounter*2+DelayOctaver/2)%DelayOctaver] << 8) | ADC_low) + 0x8000;
+    audioBuffer[audioCounter] = ADC_high>>1;
+    audioCounter++;
+    if(audioCounter >= octaverDelay) audioCounter = 0;
+    switch(octaverMode){
+      case true: output = ((audioBuffer[(audioCounter*2+octaverDelay/2)%octaverDelay] << 8) | ADC_low) + 0x8000; break;
+      case false: output = ((audioBuffer[(int(audioCounter/2)+octaverDelay/2)%octaverDelay] << 8) | ADC_low) + 0x8000; break;}
     break;
-    case 2:
-    output = ((DelayBuffer[(int(DelayCounter/2)+DelayOctaver/2)%DelayOctaver] << 8) | ADC_low) + 0x8000;
+
+    case 7: //7th effect: octave crusher
+    audioCounter++;
+    if(audioCounter >= MAX_DELAY) audioCounter = 0;
+    if(audioCounter%octaveCrusher) writePWM = false;
     break;
-    case 3:
-    if(DelayCounter%octave_crusher_threshold) write_pwm = false; 
-    break;
+
+    case 8: //8th effect: vibrato
+    audioBuffer[audioCounter] = ADC_high>>1;
+    audioCounter++;
+    if(audioCounter>=lfoDepth){
+      audioCounter=0;
+      if(countUp){
+        for(int p=0;p<10;p++) audioBuffer[lfoDepth+p]=audioBuffer[lfoDepth-1]; 
+        lfoDepth++;
+        if(lfoDepth>=vibratoDepth) countUp=false;
+      }
+      else {
+        lfoDepth--;
+        if(lfoDepth<=MIN_VIBRATO) countUp=true;
+      }
     }
+    output = ((audioBuffer[audioCounter] << 8) | ADC_low) + 0x8000;
+    break;
+
+    case 9: //9th effect: chorus
+    audioBuffer[audioCounter] = ADC_high>>1;
+    audioCounter++;
+    if(audioCounter>=lfoDepth){
+      audioCounter=0;
+      if(countUp){
+        for(int p=0;p<10;p++) audioBuffer[lfoDepth+p]=audioBuffer[lfoDepth-1]; 
+        lfoDepth++;
+        if(lfoDepth>=chorusDepth) countUp=false;
+      }
+      else {
+        lfoDepth--;
+        if(lfoDepth<=MIN_CHORUS) countUp=true;
+      }
+    }
+    output = (((audioBuffer[audioCounter] << 8) | ADC_low) + 0x8000) + output;
+    break;
   }
 
   //write the PWM signal
-  if (write_pwm){
+  if (writePWM){
     OCR4AL = ((output + 0x8000) >> 8);
     OCR4BL = output;
   }
 
   // Reset flag
-  write_pwm = true; 
+  writePWM = true; 
   
 }
