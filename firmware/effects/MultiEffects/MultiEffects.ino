@@ -1,5 +1,5 @@
 // Licensed under a Creative Commons Attribution 4.0 International License.
-/* MultiEffects.ino allows selection between delay, echo, distortion, fuzz and bit-crusher effects. */
+/* MultiEffects.ino allows selection between delay, echo, distortion, fuzz, bit-crusher, octaver, octave crusher, vibrato and chorus effects. */
 
 //display parameters
 #include "U8glib.h"
