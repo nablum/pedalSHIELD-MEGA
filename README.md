@@ -1,26 +1,109 @@
-# pedalSHIELD MEGA
-This repository is based on pedalSHIELD MEGA by electrosmash, a lo-fi programmable guitar pedal that works with the Arduino Mega 2560 board.
+# pedalSHIELD‑MEGA
+
+[![License: CC BY-NC 3.0](https://img.shields.io/badge/License-CC%20BY--NC%203.0-lightgrey.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Platform: Arduino MEGA](https://img.shields.io/badge/platform-Arduino%20MEGA-lightblue.svg)](#)
+[![KiCad](https://img.shields.io/badge/EDA-KiCad-orange.svg)](https://kicad.org/)
+
+A programmable guitar effects shield for Arduino MEGA, featuring OLED display, true-bypass footswitch, and DSP-ready input/output stages. Based on pedalSHIELD MEGA by [ElectroSmash](https://www.electrosmash.com/pedalshield-mega)  
+
 <p align="center">
-    <img src="./hardware/kicad/pedalSHIELD_MEGA.jpg" alt="drawing" width="500"/>
+    <img src="https://github.com/user-attachments/assets/0dfe1d75-aef2-4f0b-8fa8-783ec8c1eae4" alt="drawing" width="500"/>
 </p>
 
-# How is this repository different to the original pedalSHIELD MEGA?
-This version also has open source PCB project, protective case design, audio effects, and anything else needed to make the project yourself.
+## 📦 What’s Included
 
-# How Does the Circuit Work?
-This  [_hat_](https://www.hifiberry.com/blog/what-is-a-raspberry-pi-hat/) has three parts:
--   Analog Input Stage: The weak guitar signal is amplified and filtered, making it ready for the Arduino MEGA ADC (Analog to Digital Converter).
--   Arduino MEGA Board: It takes the digitalized waveform from the ADC and does all the DSP (Digital Signal Processing) creating effects (distortion, fuzz, bit-crusher, delay, etc).
--   The Output Stage: Once the new effected waveform is created inside the Arduino MEGA board, this last stage takes it and using two combined PWMs generates the analog output signal.
-<p align="center">
-  <img src="https://www.electrosmash.com/images/tech/pedalshield-mega/pedalshield-mega-stages.jpg" />
-</p>
+- ✅ **KiCad project**: schematic & PCB layout files for the hardware shield
+- ✅ **Arduino examples**: boost, fuzz, delay, and other DSP sketches
+- ✅ **Bill of Materials**: CSV file with component list and Mouser links
+- ✅ **Documentation**: assembly guide, schematic diagrams, signal flow
 
-# How to Program it?
-To make the programming as easy as possible, the [standard Arduino IDE](https://www.arduino.cc/en/Main/Software) is used. All the effects are programmed on C/C++ using the standard Arduino functions. All tools and programs are Open Source. The OLED screen uses the [U8glib](https://github.com/olikraus/u8glib) libraries (in the forum there is a tutorial explaining how to [install](http://www.electrosmash.com/forum/pedalshield-mega/290-arduino-mega-u8glib-libraries-installation) the Ug8lib and [use](http://www.electrosmash.com/forum/pedalshield-mega/292-vumeter-on-a-oled-128x64-i2c) them with some examples). Basic knowledge of C is needed to understand the codes. The best way to illustrate how to program it is showing a simple example:
-<p align="center">
-  <img src="https://www.electrosmash.com/images/tech/pedalshield-mega/pedalshield-mega-software-diagram.png" />
-</p>
+## 🛠️ Assembly & Programming
 
-## Need More Support?
-[ElectroSmash Website](https://www.electrosmash.com/pedalshield-mega)
+1. **Clone the repository**:
+
+    ```bash
+    git clone https://github.com/nablum/pedalSHIELD-MEGA.git
+    cd pedalSHIELD-MEGA
+    ```
+
+2. **Build the PCB** with KiCad or order the board from a fab using the provided Gerbers.
+
+3. **Solder the components** according to the [Assembly Guide](https://www.electrosmash.com/media/kunena/attachments/631/How-to-Build-pedalSHIELD-MEGA-V1.1.pdf).
+
+4. **Upload an effect sketch** to your Arduino MEGA using Arduino IDE.
+5. **Plug and play**:
+    - Guitar IN → Input Jack
+    - Output → Amp or Audio Interface
+    - Power → USB or DC JACK.
+
+## 🎛️ Example Effects
+
+Each audio effect is implemented in a separate folder under [`firmware/effects/`](./firmware/effects/):
+
+| Effect Name       | Description                                               |
+|-------------------|-----------------------------------------------------------|
+| BitCrusher        | Reduces resolution and sample rate for lo-fi textures     |
+| Chorus            | Modulates pitch with delay to create a thickening effect  |
+| ChorusOrVibrato   | Blendable chorus and vibrato with adjustable depth        |
+| Clean             | Transparent clean boost (reference circuit)               |
+| Distortion        | Hard-clipping distortion effect                           |
+| Echo              | Simple digital delay with feedback loop                   |
+| Fuzz              | Saturated high-gain fuzz effect                           |
+| MultiEffects      | Combination of multiple effects in a single patch         |
+| OctaveCrusher     | Bit reduction with added octave-up/down harmonics         |
+| Octaver           | Mixes original with octave-down processed signal          |
+| Reverb            | Simulates ambient reverb using delay-based algorithm      |
+| Tremolo           | Volume modulation using a low-frequency oscillator        |
+| Vibrato           | Pitch modulation effect for expressive shimmer            |
+
+## ⚙️ Hardware Specs
+
+- Compatible with **Arduino MEGA 2560**
+- 128×64 I²C OLED display (SSD1306)
+- True-bypass footswitch with relay
+- Stereo audio jacks with analog preamp/output
+- Powered via **12 V DC (center-negative)**
+
+## ❓ Troubleshooting
+
+- **OLED not lighting up** → Double-check I²C wiring and 4.7k pull-up resistors.
+- **No audio output** → Ensure signal chain is complete and shield is powered.
+- **Arduino upload fails** → Check USB port, board selection, and serial permissions.
+
+## 📚 Resources
+
+- 🔬 [pedalSHIELD-MEGA Documentation – ElectroSmash](https://www.electrosmash.com/pedalshield-mega)  
+  Official guide, schematics, theory of operation, and signal path details.
+
+- 🧰 [Assembly Guide – PDF](https://www.electrosmash.com/media/kunena/attachments/631/How-to-Build-pedalSHIELD-MEGA-V1.1.pdf)  
+  Step-by-step instructions with images for building the pedalSHIELD‑MEGA hardware.
+
+- 📦 [u8glib – OLED Display Library](https://github.com/olikraus/u8glib)  
+  Arduino graphics library used to drive the OLED screen (SSD1306, I²C).
+
+- 💻 [Arduino IDE Downloads](https://www.arduino.cc/en/software/)  
+  Install the Arduino IDE to compile and upload code to the MEGA 2560.
+
+## 🤝 Contributing
+
+Contributions are welcome! You can:
+
+- Submit new audio effects or improvements to existing sketches.
+- Suggest hardware upgrades (e.g. better op-amps, analog filtering).
+- Improve documentation or add new troubleshooting tips.
+
+Please open a pull request against the `main` branch and follow the coding style of existing files.
+
+## 📄 License
+
+- **Hardware (PCB files, schematics, BOM)**:  
+  Licensed under [Creative Commons Attribution-NonCommercial 3.0 (CC BY-NC 3.0)](https://creativecommons.org/licenses/by-nc/3.0/)
+
+- **Software (Arduino code, examples)**:  
+  Licensed under the [MIT License](LICENSE)
+
+## 📬 Contact
+
+Created by [@nablum](https://github.com/nablum).  
+For questions or collaboration ideas, feel free to open an issue or reach out directly.
