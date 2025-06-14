@@ -1,9 +1,10 @@
 # pedalSHIELD‑MEGA
 
-[![License: CC BY-NC 3.0](https://img.shields.io/badge/License-CC%20BY--NC%203.0-lightgrey.svg)](LICENSE)
+[![License: CC BY-NC](https://img.shields.io/badge/License-CC%20BY--NC-8e44ad.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Platform: Arduino MEGA](https://img.shields.io/badge/platform-Arduino%20MEGA-lightblue.svg)](#)
-[![KiCad](https://img.shields.io/badge/EDA-KiCad-orange.svg)](https://kicad.org/)
+[![Platform: Arduino](https://img.shields.io/badge/Platform-Arduino-lightblue.svg)](https://www.arduino.cc/)
+[![KiCad](https://img.shields.io/badge/PCB-KiCad-blue.svg)](https://kicad.org/)
+[![OpenSCAD](https://img.shields.io/badge/CAD-OpenSCAD-orange.svg)](https://www.openscad.org/)
 
 A programmable guitar effects shield for Arduino MEGA, featuring OLED display, true-bypass footswitch, and DSP-ready input/output stages. Based on pedalSHIELD MEGA by [ElectroSmash](https://www.electrosmash.com/pedalshield-mega)  
 
