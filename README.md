@@ -1,7 +1,7 @@
 <p align="center">
-    <img src="https://github.com/user-attachments/assets/ae48a92f-2481-4286-b1d7-8852ee410b0b" 
+    <img src="https://github.com/user-attachments/assets/f7b5cbec-0567-4627-9ddc-53d40b98cde8" 
     alt="logo" 
-    width="200"/>
+    width="250"/>
 </p>
 
 [![License: CC BY-NC](https://img.shields.io/badge/License-CC%20BY--NC-8e44ad.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
